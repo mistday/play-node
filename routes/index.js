@@ -1,7 +1,5 @@
-var redisClient     = require('redis').createClient();
-
 var index = function(req, res) {
-  res.render('index', {'login': req.session.login});
+  res.render('index', {'user': req.session.user});
 }
 
 module.exports = index;

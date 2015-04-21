@@ -1,5 +1,5 @@
 var auth = function(req, res) {
-	res.render('auth');
+  res.render('auth');
 }
 
 module.exports = auth;

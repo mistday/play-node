@@ -1,6 +1,11 @@
 var login = function(req, res) {
-	req.session.login = req.body.login;
-	res.redirect('/');
+  if (req.body.login === 'admin' && req.body.pass === '123456') {
+    req.session.user = req.body.login;
+    res.redirect('/');
+  } else {
+    res.redirect('/auth');
+  }
+    
 }
 
 module.exports = login;

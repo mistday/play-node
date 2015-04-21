@@ -10,11 +10,13 @@ var routes          = {};
 routes.index        = require('./routes');
 routes.auth         = require('./routes/auth');
 routes.login        = require('./routes/login');
+routes.logout        = require('./routes/logout');
 routes.notFound     = require('./routes/404');
 
 
 app.set('view engine', 'jade');
 app.set('views', './views');
+app.use(express.static('static'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -32,6 +34,7 @@ app.use(session(
 app.get('/', routes.index);
 app.get('/auth', routes.auth);
 app.post('/login', routes.login);
+app.get('/logout', routes.logout);
 
 
 
