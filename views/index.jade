@@ -7,9 +7,11 @@ html
     script(src="http://code.jquery.com/jquery-1.11.1.min.js")
   head
   body
-    if user
-      p Hello 
-        span #{user}
-      a(href="/logout" class="button-z1") logout
-    else
-      a(href="/auth" class="button-z1") enter
+    div(class="wrap")
+      header
+        if user
+          p Hello 
+            span #{user}
+            a(href="/logout" class="button-z1") logout
+        else
+            a(href="/auth" class="button-z1") enter

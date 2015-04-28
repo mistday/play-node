@@ -1,33 +1,68 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=latin,cyrillic');
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-a {
-	margin: 0 10px;
+body {
+  font-family: 'Open Sans', sans-serif;
 }
 p {
-	margin: 10px;
+  margin: 10px;
 }
-span {
-	color: coral;
-	text-transform: capitalize;
+/*wrap*/
+.wrap {
+  width: 1024px;
+  margin: auto;
+  padding-top: 50px
 }
+/*button*/
 .button-z1 {
-	display: inline-block;
-	padding: 4px 20px;
-	margin-top: 4px;
-	margin-bottom: 4px;
-	border: 1px solid #555;
-	color: #555;
-	text-decoration: none;
-	cursor: pointer;
-	background-color: transparent;
+  display: inline-block;
+  padding: 0 12px;
+  border: 1px solid #bbb;
+  color: #777;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  height: 22px;
+  line-height: 22px;
+  font-size: 14px;
 }
 .button-z1:hover {
-	color: coral;
-	border-color: coral;
+  color: coral;
+  border-color: coral;
 }
-form {
-	margin: 10px
+/*header*/
+header p a {
+  float:  right
+}
+header p span {
+  color: coral;
+  text-transform: capitalize;
+}
+/*auth*/
+.auth form {
+  width: 286px;
+  border: 1px solid #aaa;
+  padding: 16px;
+  position: relative;
+  margin: auto;
+  top: 200px;
+}
+.auth td {
+  font-size: 14px;
+  border-top: 6px solid transparent
+}
+.auth td + td {
+  padding-left: 10px;
+}
+
+.auth tr:first-child td {
+  border-top: none
+}
+.auth td input {
+  float: right;
 }

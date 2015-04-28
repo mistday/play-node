@@ -3,7 +3,7 @@ var express         = require('express'),
     session         = require('express-session'),
     redis           = require('redis'),
     RedisStore      = require('connect-redis')(session),
-    redisClient     = redis.createClient(),
+    // redisClient     = redis.createClient(),
     app             = express();
 
 var routes          = {};
@@ -23,16 +23,28 @@ app.use(bodyParser.urlencoded({
 app.use(session(
   {
     secret: 'secretass',
-    store: new RedisStore({host: 'localhost', port: 6379, client: redisClient}),
+    // store: new RedisStore({host: 'localhost', port: 6379, client: redisClient}),
     resave: false,
     saveUninitialized: false
   }
 ));
 
 
+app.get('/auth', routes.auth);
+app.post('/login', routes.login);
+
+// if session
+app.use(function (req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/auth');
+  }
+});
+
 
 app.get('/', routes.index);
-app.get('/auth', routes.auth);
+// app.get('/auth', routes.auth);
 app.post('/login', routes.login);
 app.get('/logout', routes.logout);
 

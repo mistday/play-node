@@ -7,18 +7,18 @@ html
     script(src="http://code.jquery.com/jquery-1.11.1.min.js")
   head
   body
-    form(action="/login" method="POST")
-      table
-        tr
-          td login
-          td
-            input(type="text" name="login")
-        tr
-          td password
-          td
-            input(type="text" name="pass")
-        tr
-          td
-            input(type="submit" class="button-z1")
-          td
-    a(href="/" class="button-z1") back
+    div(class="auth")
+      form(action="/login" method="POST")
+        table
+          tr
+            td login
+            td
+              input(type="text" name="login")
+          tr
+            td password
+            td
+              input(type="text" name="pass")
+          tr
+            td(colspan="2")
+              input(type="submit" value="send" class="button-z1")
+              a(href="/" class="button-z1") back
