@@ -12,6 +12,9 @@ html
         if user
           p Hello 
             span #{user}
-            a(href="/logout" class="button-z1") logout
+            a(href="/logout" class="button") logout
         else
-            a(href="/auth" class="button-z1") enter
+            a(href="/auth" class="button") enter
+      nav(class="main")
+        a(href="/upload" class="button") Upload
+        a(href="/error" class="button") error

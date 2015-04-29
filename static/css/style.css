@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=latin,cyrillic');
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=latin,cyrillic");
 * {
   margin: 0;
   padding: 0;
@@ -9,17 +9,13 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-p {
-  margin: 10px;
-}
 /*wrap*/
 .wrap {
   width: 1024px;
   margin: auto;
-  padding-top: 50px
 }
 /*button*/
-.button-z1 {
+.button {
   display: inline-block;
   padding: 0 12px;
   border: 1px solid #bbb;
@@ -31,16 +27,21 @@ p {
   line-height: 22px;
   font-size: 14px;
 }
-.button-z1:hover {
-  color: coral;
-  border-color: coral;
+.button:hover {
+  color: #ff7f50;
+  border-color: #ff7f50;
 }
 /*header*/
+header {
+  padding-top: 50px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #aaa;
+}
 header p a {
-  float:  right
+  float: right;
 }
 header p span {
-  color: coral;
+  color: #ff7f50;
   text-transform: capitalize;
 }
 /*auth*/
@@ -54,15 +55,25 @@ header p span {
 }
 .auth td {
   font-size: 14px;
-  border-top: 6px solid transparent
+  border-top: 6px solid transparent;
 }
 .auth td + td {
   padding-left: 10px;
 }
-
 .auth tr:first-child td {
-  border-top: none
+  border-top: none;
 }
-.auth td input {
+.auth input {
   float: right;
+}
+/*nav*/
+.main {
+  padding-top: 20px;
+}
+.main a {
+  float: left;
+  margin-left: 6px;
+}
+.main a:first-child {
+  margin-left: 0;
 }

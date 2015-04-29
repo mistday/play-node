@@ -1,0 +1,66 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:700,400&subset=latin,cyrillic');
+@import 'nib'
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+body
+  font-family: 'Open Sans', sans-serif
+  
+/*wrap*/
+.wrap
+  width: 1024px
+  margin: auto
+/*button*/
+.button
+  display: inline-block
+  padding: 0 12px
+  border: 1px solid #bbb
+  color: #777
+  text-decoration: none
+  cursor: pointer
+  background-color: transparent
+  height: 22px
+  line-height: 22px
+  font-size: 14px
+  &:hover 
+    color: coral
+    border-color: coral
+/*header*/
+header
+  padding-top: 50px
+  padding-bottom 15px
+  border-bottom 1px solid #aaa
+  p
+    a
+      float:  right
+    span
+      color: coral
+      text-transform: capitalize
+/*auth*/
+.auth
+  form
+    width: 286px
+    border: 1px solid #aaa
+    padding: 16px
+    position: relative
+    margin: auto
+    top: 200px
+  td
+    font-size: 14px;
+    border-top: 6px solid transparent
+  td + td
+    padding-left: 10px
+  tr:first-child
+    td
+      border-top: none
+  input
+    float: right
+/*nav*/
+.main
+  padding-top 20px
+  a
+    float left
+    margin-left 6px
+    &:first-child
+      margin-left 0

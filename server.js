@@ -48,8 +48,18 @@ app.get('/', routes.index);
 app.post('/login', routes.login);
 app.get('/logout', routes.logout);
 
+app.get('/error', function(req, res) {
+  throw new Error;
+})
 
 
 app.all('*', routes.notFound);
+
+// error handler
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 
 var server = app.listen(3000);
