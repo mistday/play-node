@@ -1,0 +1,87 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\nodejs\\node.exe',
+1 verbose cli   'c:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'Multer',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 warn package.json prototype@1.0.0 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'Multer', null ]
+7 verbose cache add name=undefined spec="Multer" args=["Multer",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'Multer',
+8 verbose parsed url   path: 'Multer',
+8 verbose parsed url   href: 'Multer' }
+9 silly lockFile ed2add88-Multer Multer
+10 verbose lock Multer C:\Users\mistday\AppData\Roaming\npm-cache\ed2add88-Multer.lock
+11 silly lockFile ed2add88-Multer Multer
+12 silly lockFile ed2add88-Multer Multer
+13 verbose addNamed [ 'Multer', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile c6ffef5d-Multer Multer@
+16 verbose lock Multer@ C:\Users\mistday\AppData\Roaming\npm-cache\c6ffef5d-Multer.lock
+17 silly addNameRange { name: 'Multer', range: '*', hasData: false }
+18 verbose request where is /Multer
+19 verbose request registry https://registry.npmjs.org/
+20 verbose request id 53dd248085a6f3f7
+21 verbose url raw /Multer
+22 verbose url resolving [ 'https://registry.npmjs.org/', './Multer' ]
+23 verbose url resolved https://registry.npmjs.org/Multer
+24 verbose request where is https://registry.npmjs.org/Multer
+25 info trying registry request attempt 1 at 12:18:40
+26 http GET https://registry.npmjs.org/Multer
+27 http 404 https://registry.npmjs.org/Multer
+28 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 verbose headers   'content-type': 'application/json',
+28 verbose headers   'cache-control': 'max-age=0',
+28 verbose headers   'content-length': '51',
+28 verbose headers   'accept-ranges': 'bytes',
+28 verbose headers   date: 'Mon, 04 May 2015 09:18:43 GMT',
+28 verbose headers   via: '1.1 varnish',
+28 verbose headers   age: '0',
+28 verbose headers   connection: 'keep-alive',
+28 verbose headers   'x-served-by': 'cache-fra1235-FRA',
+28 verbose headers   'x-cache': 'MISS',
+28 verbose headers   'x-cache-hits': '0',
+28 verbose headers   'x-timer': 'S1430731123.002840,VS0,VE705' }
+29 silly registry.get cb [ 404,
+29 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+29 silly registry.get     'content-type': 'application/json',
+29 silly registry.get     'cache-control': 'max-age=0',
+29 silly registry.get     'content-length': '51',
+29 silly registry.get     'accept-ranges': 'bytes',
+29 silly registry.get     date: 'Mon, 04 May 2015 09:18:43 GMT',
+29 silly registry.get     via: '1.1 varnish',
+29 silly registry.get     age: '0',
+29 silly registry.get     connection: 'keep-alive',
+29 silly registry.get     'x-served-by': 'cache-fra1235-FRA',
+29 silly registry.get     'x-cache': 'MISS',
+29 silly registry.get     'x-cache-hits': '0',
+29 silly registry.get     'x-timer': 'S1430731123.002840,VS0,VE705' } ]
+30 silly lockFile c6ffef5d-Multer Multer@
+31 silly lockFile c6ffef5d-Multer Multer@
+32 error 404 404 Not Found: Multer
+32 error 404
+32 error 404 'Multer' is not in the npm registry.
+32 error 404 You should bug the author to publish it
+32 error 404 It was specified as a dependency of 'prototype'
+32 error 404
+32 error 404 Note that you can also install from a
+32 error 404 tarball, folder, or http url, or git url.
+33 error System Windows_NT 6.1.7601
+34 error command "c:\\nodejs\\node.exe" "c:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i" "Multer" "--save"
+35 error cwd C:\Му
+36 error node -v v0.10.33
+37 error npm -v 1.4.28
+38 error code E404
+39 verbose exit [ 1, true ]

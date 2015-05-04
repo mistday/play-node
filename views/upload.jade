@@ -1,0 +1,21 @@
+<!doctype html>
+html
+  head
+    title
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="css/style.css")
+    script(src="http://code.jquery.com/jquery-1.11.1.min.js")
+    script(src="js/app.js")
+  head
+  body
+    div(class="wrap")
+      header
+        p Upload Page
+          a(href="/logout" class="button") logout
+      nav(class="main")
+        a(href="/" class="button") Main
+        a(href="/error" class="button") error
+      form
+        input(type="text" name="name")
+        input(type="file" name="file" id="file")
+        button(id="upload-file") upload file

@@ -4,6 +4,7 @@ var express         = require('express'),
     redis           = require('redis'),
     RedisStore      = require('connect-redis')(session),
     // redisClient     = redis.createClient(),
+    multer  = require('multer'),
     app             = express();
 
 var routes          = {};
@@ -12,6 +13,8 @@ routes.auth         = require('./routes/auth');
 routes.login        = require('./routes/login');
 routes.logout        = require('./routes/logout');
 routes.notFound     = require('./routes/404');
+routes.upload     = require('./routes/upload');
+routes.savefile     = require('./routes/savefile');
 
 
 app.set('view engine', 'jade');
@@ -28,6 +31,7 @@ app.use(session(
     saveUninitialized: false
   }
 ));
+app.use(multer({ dest: './uploads/'}));
 
 
 app.get('/auth', routes.auth);
@@ -48,6 +52,9 @@ app.get('/', routes.index);
 app.post('/login', routes.login);
 app.get('/logout', routes.logout);
 
+app.get('/upload', routes.upload);
+app.post('/file', routes.savefile);
+
 app.get('/error', function(req, res) {
   throw new Error;
 })
@@ -62,4 +69,4 @@ app.use(function (err, req, res, next) {
 });
 
 
-var server = app.listen(3000);
+var server = app.listen(8080);
