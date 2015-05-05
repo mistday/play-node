@@ -4,7 +4,7 @@ var express         = require('express'),
     redis           = require('redis'),
     RedisStore      = require('connect-redis')(session),
     // redisClient     = redis.createClient(),
-    multer  = require('multer'),
+    multiparty      = require('multiparty'),
     app             = express();
 
 var routes          = {};
@@ -31,7 +31,6 @@ app.use(session(
     saveUninitialized: false
   }
 ));
-app.use(multer({ dest: './uploads/'}));
 
 
 app.get('/auth', routes.auth);

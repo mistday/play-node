@@ -15,7 +15,7 @@
     "express": "^4.12.3",
     "express-session": "^1.11.1",
     "jade": "^1.9.2",
-    "multer": "^0.1.8",
+    "multiparty": "^4.1.1",
     "redis": "~0.12.1"
   },
   "devDependencies": {
