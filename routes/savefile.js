@@ -16,7 +16,7 @@ var savefile = function(req, res) {
   });
   
   form.on('part', function(part) {
-    
+    total = 0;
     bufferSize = form._writableState.highWaterMark;
     fileSize = part.byteCount;
     onePC = (fileSize * (PC/100));
@@ -27,16 +27,16 @@ var savefile = function(req, res) {
       part.on('data', function(data) {
         total += data.length;
         if(total >= comparePC) {
-          var multiple = (total / onePC).toFixed(0);
+          var multiple = (total / onePC).toFixed(2);
           comparePC = onePC + onePC * multiple;
 
           // ---------------------------
-          console.log(PC*multiple+'%');
+          console.log(Math.ceil(PC*multiple)+'%');
           // ---------------------------
         }
       });
 
-      var ws = fs.createWriteStream('./uploads/' + part.filename);   
+      var ws = fs.createWriteStream('./uploads/' + part.filename);
       part.pipe(ws);
     }
 
