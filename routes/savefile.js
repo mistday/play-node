@@ -1,25 +1,43 @@
 var fs          = require('fs'),
     multiparty  = require('multiparty');
+    
+var fileSize,
+    total = 0,
+    bufferSize,
+    multiple,
+    PC = 1,
+    comparePC,
+    onePC;
 
 var savefile = function(req, res) {
-  console.log('body: ', req.body);
-  console.log('files: ', req.files);
-
   var form = new multiparty.Form();
-  
   form.on('error', function(err) {
     console.log('Error parsing form: ' + err.stack);
   });
-
+  
   form.on('part', function(part) {
-    if (part.filename === null) {
-      console.log('1 got field named ' + part.name);
-      part.resume();
-    }
-   
+    
+    bufferSize = form._writableState.highWaterMark;
+    fileSize = part.byteCount;
+    onePC = (fileSize * (PC/100));
+    comparePC = onePC;
+
     if (part.filename !== null) {
-      var writeStream = fs.createWriteStream('./uploads/' + part.filename);   
-      part.pipe(writeStream);
+
+      part.on('data', function(data) {
+        total += data.length;
+        if(total >= comparePC) {
+          var multiple = (total / onePC).toFixed(0);
+          comparePC = onePC + onePC * multiple;
+
+          // ---------------------------
+          console.log(PC*multiple+'%');
+          // ---------------------------
+        }
+      });
+
+      var ws = fs.createWriteStream('./uploads/' + part.filename);   
+      part.pipe(ws);
     }
 
   });
@@ -27,7 +45,6 @@ var savefile = function(req, res) {
   form.on('close', function() {
     console.log('Upload completed!');
   });
-
   form.parse(req);
 }
 

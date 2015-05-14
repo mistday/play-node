@@ -37,13 +37,13 @@ app.get('/auth', routes.auth);
 app.post('/login', routes.login);
 
 // if session
-app.use(function (req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    res.redirect('/auth');
-  }
-});
+// app.use(function (req, res, next) {
+//   if (req.session.user) {
+//     next();
+//   } else {
+//     res.redirect('/auth');
+//   }
+// });
 
 
 app.get('/', routes.index);
