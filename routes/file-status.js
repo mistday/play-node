@@ -7,7 +7,12 @@ var oldStatus = status.value;
 module.exports = function(req, res) {
   i = 0
   var resI = setInterval(function() {
-    console.log(i++);
+    console.log(++i);
+    if(status.error) {
+      console.log('error')
+      clearInterval(resI);
+      return false;
+    }
 
     if(oldStatus != status.value) {
       clearInterval(resI);
@@ -15,6 +20,7 @@ module.exports = function(req, res) {
       res.json({val: status.value});
     }
     if(status.value === '100%') {
+      console.log('100%');
       clearInterval(resI);
     }
   }, 250);

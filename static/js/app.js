@@ -18,7 +18,7 @@ $(function() {
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4) {
 				if(xmlhttp.status == 200) {
-
+					console.log(xmlhttp.responseText);
 					var status = JSON.parse(xmlhttp.responseText);
 					$('.upload-status-1').css({width: status.val})
 					

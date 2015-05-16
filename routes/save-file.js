@@ -40,6 +40,12 @@ var savefile = function(req, res) {
       });
 
       var ws = fs.createWriteStream('./uploads/' + part.filename);
+      
+      ws.on('error', function(err) {
+        console.log(err);
+        status.error = true;
+      });
+
       part.pipe(ws);
     }
   });
