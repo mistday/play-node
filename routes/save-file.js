@@ -7,10 +7,13 @@ var fileSize,
     multiple,
     PC = 1,
     comparePC,
-    onePC;
+    onePC,
+    status = {};
+
 
 var savefile = function(req, res) {
   var form = new multiparty.Form();
+  
   form.on('error', function(err) {
     console.log('Error parsing form: ' + err.stack);
   });
@@ -31,7 +34,7 @@ var savefile = function(req, res) {
           comparePC = onePC + onePC * multiple;
 
           // ---------------------------
-          console.log(Math.ceil(PC*multiple)+'%');
+          status.value = Math.ceil(PC*multiple)+'%';
           // ---------------------------
         }
       });
@@ -39,13 +42,14 @@ var savefile = function(req, res) {
       var ws = fs.createWriteStream('./uploads/' + part.filename);
       part.pipe(ws);
     }
-
   });
 
   form.on('close', function() {
-    console.log('Upload completed!');
+    // console.log('Upload completed!');
+    res.end();
   });
   form.parse(req);
 }
 
 module.exports = savefile;
+module.exports.status = status;

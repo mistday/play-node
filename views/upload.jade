@@ -16,10 +16,13 @@ html
         a(href="/" class="button") Main
         a(href="/error" class="button") error
       form
-        p
-          label(for="file-name") File name:
-          input(type="text" name="name" id="file-name")
+        //- p
+        //-   label(for="file-name") File name:
+        //-   input(type="text" name="name" id="file-name")
         p
           input(type="file" name="file" id="file")
+          span(class="upload-status")
+            span(class="upload-status-0")
+            span(class="upload-status-1")
         p
           button(id="upload-file" class="button") upload file

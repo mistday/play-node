@@ -14,7 +14,8 @@ routes.login        = require('./routes/login');
 routes.logout        = require('./routes/logout');
 routes.notFound     = require('./routes/404');
 routes.upload     = require('./routes/upload');
-routes.savefile     = require('./routes/savefile');
+routes.savefile     = require('./routes/save-file');
+routes.filestatus     = require('./routes/file-status');
 
 
 app.set('view engine', 'jade');
@@ -53,6 +54,7 @@ app.get('/logout', routes.logout);
 
 app.get('/upload', routes.upload);
 app.post('/file', routes.savefile);
+app.get('/filestatus', routes.filestatus);
 
 app.get('/error', function(req, res) {
   throw new Error;
