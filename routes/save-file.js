@@ -8,10 +8,13 @@ var fileSize,
     PC = 1,
     comparePC,
     onePC,
-    status = {};
-
+    status = {},
+    firstData = true;
 
 var savefile = function(req, res) {
+  var hash;
+  firstData = true;
+
   var form = new multiparty.Form();
   
   form.on('error', function(err) {
@@ -28,22 +31,38 @@ var savefile = function(req, res) {
     if (part.filename !== null) {
 
       part.on('data', function(data) {
-        total += data.length;
-        if(total >= comparePC) {
-          var multiple = (total / onePC).toFixed(2);
-          comparePC = onePC + onePC * multiple;
 
-          // ---------------------------
-          status.value = Math.ceil(PC*multiple)+'%';
-          // ---------------------------
+        if(firstData) {
+          firstData = false;
+          hash = JSON.parse(data.toString()).val;
+          
+
+          status[hash] = {
+            value: 0,
+            valueOld: 0,
+            error: null
+          }
+
+
+        } else {
+          total += data.length;
+          if(total >= comparePC) {
+            var multiple = (total / onePC).toFixed(4);
+            comparePC = onePC + onePC * multiple;
+
+            // ---------------------------
+            status[hash].value = Math.ceil(PC*multiple)+'%';
+            // ---------------------------
+          }
         }
+
       });
 
       var ws = fs.createWriteStream('./uploads/' + part.filename);
       
       ws.on('error', function(err) {
         console.log(err);
-        status.error = true;
+        status[hash].error = true;
       });
 
       part.pipe(ws);
@@ -51,7 +70,7 @@ var savefile = function(req, res) {
   });
 
   form.on('close', function() {
-    // console.log('Upload completed!');
+    console.log('Upload completed!');
     res.end();
   });
   form.parse(req);

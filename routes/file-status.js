@@ -1,27 +1,42 @@
 var i = 0;
 
-var status = {};
+var status = {},
+    hash;
 status = require('./save-file').status;
-var oldStatus = status.value;
+
+setInterval(function() {
+  console.log(status);
+}, 2000)
 
 module.exports = function(req, res) {
-  i = 0
+  hash = req.query.hash;
   var resI = setInterval(function() {
-    console.log(++i);
-    if(status.error) {
+    
+    // 
+    // console.log('interval is work');
+    // 
+
+    if(status[hash].error) {
       console.log('error')
       clearInterval(resI);
       return false;
     }
 
-    if(oldStatus != status.value) {
+    if(status[hash].valueOld != status[hash].value) {
+
+      // 
+      // console.log('STATUS(HASH) - ', status[hash].value);
+      // 
+
       clearInterval(resI);
-      oldStatus = status.value;
-      res.json({val: status.value});
+      status[hash].valueOld = status[hash].value;
+      res.json({val: status[hash].value});
     }
-    if(status.value === '100%') {
-      console.log('100%');
+
+    if(status[hash].value === '100%') {
+      // console.log('100%');
+      delete status[hash]
       clearInterval(resI);
     }
-  }, 250);
+  }, 500);
 };
