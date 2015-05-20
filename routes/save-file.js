@@ -1,32 +1,23 @@
 var fs          = require('fs'),
     multiparty  = require('multiparty');
-    
-var fileSize,
-    total = 0,
-    bufferSize,
-    multiple,
-    PC = 1,
-    comparePC,
-    onePC,
-    status = {},
-    firstData = true;
+
+var files = {},
+    pc = 1;
+
 
 var savefile = function(req, res) {
-  var hash;
-  firstData = true;
-
-  var form = new multiparty.Form();
+  var hash,
+      firstData = true;
+      form = new multiparty.Form();
   
+
   form.on('error', function(err) {
+    
     console.log('Error parsing form: ' + err.stack);
   });
-  
+ 
+
   form.on('part', function(part) {
-    total = 0;
-    bufferSize = form._writableState.highWaterMark;
-    fileSize = part.byteCount;
-    onePC = (fileSize * (PC/100));
-    comparePC = onePC;
 
     if (part.filename !== null) {
 
@@ -36,30 +27,37 @@ var savefile = function(req, res) {
           firstData = false;
           hash = JSON.parse(data.toString()).val;
           
-
-          status[hash] = {
-            value: 0,
-            valueOld: 0,
-            error: null
+          // create obj
+          files[hash] = {
+            value: hash,
+            total: 0,
+            multiple: null,
+            compare: null,
+            portion: (part.byteCount * (pc/100)),
+            hashReceived: false,
+            error: null,
+            status: {
+              value: 0,
+              _value: 0
+            },
+            loop: null
           }
-
-
+          // -----------
         } else {
-          total += data.length;
-          if(total >= comparePC) {
-            var multiple = (total / onePC).toFixed(4);
-            comparePC = onePC + onePC * multiple;
+          files[hash].total += data.length;
+          if(files[hash].total >= files[hash].compare) {
+            files[hash].multiple = (files[hash].total / files[hash].portion).toFixed(4);
+            files[hash].compare = files[hash].portion + files[hash].portion * files[hash].multiple;
 
-            // ---------------------------
-            status[hash].value = Math.ceil(PC*multiple)+'%';
-            // ---------------------------
+            // -------
+            files[hash].status.value = Math.ceil(pc*files[hash].multiple)+'%';
+            // -------
           }
         }
 
       });
 
-      var ws = fs.createWriteStream('./uploads/' + part.filename);
-      
+      var ws = fs.createWriteStream('./uploads/' + part.filename); 
       ws.on('error', function(err) {
         console.log(err);
         status[hash].error = true;
@@ -69,6 +67,7 @@ var savefile = function(req, res) {
     }
   });
 
+
   form.on('close', function() {
     console.log('Upload completed!');
     res.end();
@@ -77,4 +76,4 @@ var savefile = function(req, res) {
 }
 
 module.exports = savefile;
-module.exports.status = status;
+module.exports.status = files;

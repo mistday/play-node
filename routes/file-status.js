@@ -1,42 +1,30 @@
-var i = 0;
+var EE = require('events').EventEmitter;
+var status = new EE();
 
-var status = {},
-    hash;
-status = require('./save-file').status;
+var files = require('./save-file').status;
+
+var resArr = {};
 
 setInterval(function() {
-  console.log(status);
-}, 2000)
+  var key;
+  for(key in files) {
+    status.emit('up', files[key].value);
+  }
+}, 1000)
 
 module.exports = function(req, res) {
-  hash = req.query.hash;
-  var resI = setInterval(function() {
-    
-    // 
-    // console.log('interval is work');
-    // 
-
-    if(status[hash].error) {
-      console.log('error')
-      clearInterval(resI);
-      return false;
-    }
-
-    if(status[hash].valueOld != status[hash].value) {
-
-      // 
-      // console.log('STATUS(HASH) - ', status[hash].value);
-      // 
-
-      clearInterval(resI);
-      status[hash].valueOld = status[hash].value;
-      res.json({val: status[hash].value});
-    }
-
-    if(status[hash].value === '100%') {
-      // console.log('100%');
-      delete status[hash]
-      clearInterval(resI);
-    }
-  }, 500);
+  resArr[req.query.hash] = res;
 };
+
+
+status.on('up', function(hash) {
+  console.log('up');
+  console.log('hash - ', hash);
+  
+  resArr[hash].json({val: files[hash].status.value});
+  
+  if(files[hash].status.value === '100%') {
+    delete resArr[hash];
+    delete files[hash];
+  }
+});
